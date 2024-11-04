@@ -74,6 +74,12 @@ machine_list = {
     "frontier": MachineData(
         lambda: os.environ["LMOD_SYSTEM_NAME"] == "frontier", "frontier.olcf.ornl.gov"
     ),
+    "thera-MI250": MachineData(
+        lambda: os.environ["HOSTNAME"] == "TheraC53", "TheraS02.login.amd.com"),
+    "thera-MI300X": MachineData(
+        lambda: os.environ["HOSTNAME"] == "TheraC17", "TheraS02.login.amd.com"),
+    "thera-A100": MachineData(
+        lambda: os.environ["HOSTNAME"] == "TheraC10", "TheraS02.login.amd.com"),
     # ALCF
     "aurora": MachineData(lambda: "aurora" in socket.getfqdn(), "aurora.alcf.anl.gov"),
     "sunspot": MachineData(lambda: "americas.sgi.com" in socket.getfqdn(), "sunspot.alcf.anl.gov"),

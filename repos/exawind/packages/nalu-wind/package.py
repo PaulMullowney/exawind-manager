@@ -29,7 +29,9 @@ class NaluWind(bNaluWind, CtestPackage):
             env.append_flags("CXXFLAGS", "-fsanitize=address -fno-omit-frame-pointer -fsanitize-blacklist={0}".format(join_path(self.package_dir, "blacklist.asan")))
             env.set("LSAN_OPTIONS", "suppressions={0}".format(join_path(self.package_dir, "sup.asan")))
             env.set("ASAN_OPTIONS", "detect_container_overflow=0")
-
+        env.append_flags("CXXFLAGS", "-ggdb -fgpu-rdc")
+        print("NaluWind:setup_build_environment")
+        
     def cmake_args(self):
         spec = self.spec
 
@@ -43,10 +45,10 @@ class NaluWind(bNaluWind, CtestPackage):
         if spec.satisfies("+tests") or self.run_tests or spec.satisfies("dev_path=*"):
             cmake_options.append(self.define("CMAKE_EXPORT_COMPILE_COMMANDS",True))
             cmake_options.append(self.define("ENABLE_TESTS", True))
-            cmake_options.append(self.define("NALU_WIND_SAVE_GOLDS", True))
+            cmake_options.append(self.define("NALU_WIND_SAVE_GOLDS", False))
             cmake_options.append(self.define("NALU_WIND_SAVED_GOLDS_DIR", super().saved_golds_dir))
             cmake_options.append(self.define("NALU_WIND_REFERENCE_GOLDS_DIR", super().reference_golds_dir))
-            if spec.satisfies("+cuda"):
+            if spec.satisfies("+cuda") or spec.satisfies("+rocm"):
                 cmake_options.append(self.define("TEST_ABS_TOL", 1.0e-8))
                 cmake_options.append(self.define("TEST_REL_TOL", 1.0e-6))
 

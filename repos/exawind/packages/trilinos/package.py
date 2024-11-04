@@ -34,3 +34,5 @@ class Trilinos(bTrilinos):
         if spec.satisfies("+asan"):
             env.append_flags("CXXFLAGS", "-fsanitize=address -fno-omit-frame-pointer")
             env.set("LSAN_OPTIONS", "suppressions={0}".format(join_path(self.package_dir, "sup.asan")))
+        env.append_flags("CXXFLAGS", "-lstdc++fs -ggdb")
+        env.append_flags("LDFLAGS", "-lstdc++fs -ggdb")
