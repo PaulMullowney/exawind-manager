@@ -1,0 +1,18 @@
+
+compilers:
+  - compiler:
+      spec: clang@18.0.0
+      paths:
+        cc: /opt/COE_modules/rocm/rocm-6.2.2/bin/amdclang
+        cxx: /opt/COE_modules/rocm/rocm-6.2.2/bin/amdclang++
+        f77: /opt/COE_modules/rocm/rocm-6.2.2/bin/amdflang
+        fc: /opt/COE_modules/rocm/rocm-6.2.2/bin/amdflang
+      flags: {}
+      operating_system: sles15
+      target: any
+      modules:
+        - PrgEnv-amd/8.5.0
+        - rocm/6.2.2
+        - craype-accel-amd-gfx942
+      extra_rpaths: []
+      environment: {}

@@ -1,0 +1,70 @@
+packages:
+  cray-mpich:
+    require: "@8.1.29"
+    buildable: false
+    externals:
+      - spec: "cray-mpich@8.1.29%clang@18.0.0"
+        prefix: /opt/cray/pe/mpich/8.1.29/ofi/amd/5.0
+        modules:
+          - cray-mpich/8.1.29
+          - craype-network-ofi
+          - libfabric/1.20.1
+          - cray-pmi/6.1.15
+          - xpmem/2.9.6-1.1_20240510205610__g087dc11fc19d
+  rocprim:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: rocprim@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2
+  rocrand:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: rocrand@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2
+  rocthrust:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: rocthrust@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2
+  rocsparse:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: rocsparse@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2
+  hip:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: hip@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2
+  hsa-rocr-dev:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: hsa-rocr-dev@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2
+  llvm-amdgpu:
+    require: "@6.2.2"
+    buildable: false
+    externals:
+      - spec: llvm-amdgpu@6.2.2
+        prefix: /opt/COE_modules/rocm/rocm-6.2.2/llvm
+  python:
+    require: "~ssl"
+    externals:
+      - spec: python@3.11.7
+        prefix: /opt/cray/pe/python/3.11.7
+        modules:
+          - cray-python/3.11.7
+  nalu-wind:
+    require: "~trilinos-solvers"
+  mpi:
+    require: "cray-mpich@8.1.29"
+  all:
+    require:
+      - "%clang@18.0.0"
+    variants: amdgpu_target=gfx942

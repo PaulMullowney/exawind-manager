@@ -1,0 +1,25 @@
+packages:
+  openmpi:
+    externals:
+      - spec: openmpi@4.1.5
+        prefix: /share/contrib-modules/openmpi/ompi4.1.5-ucx1.13.1-cuda12.0
+        modules:
+          - openmpi/4.1.5-ucx1.13.1-cuda12.0
+  cuda:
+    require: "@12.5"
+    buildable: false
+    externals:
+      - spec: cuda@12.5
+        prefix: /usr/local/cuda-12.5
+        modules:
+          - CUDA/12.5
+  python:
+    require: "~ssl"
+  nalu-wind:
+    require: "~trilinos-solvers"
+  mpi:
+    require: "openmpi"
+  all:
+    require:
+      - "%gcc@11.3"
+    variants: cuda_arch=80

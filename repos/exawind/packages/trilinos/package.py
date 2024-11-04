@@ -44,4 +44,6 @@ class Trilinos(bTrilinos):
             cmake_options.append(self.define("STK_HAVE_FP_EXCEPT", False))
             cmake_options.append(self.define("STK_HAVE_FP_ERRNO", False))
 
+        #env.append_flags("CXXFLAGS", "-lstdc++fs")
+        #env.append_flags("LDFLAGS", "-lstdc++fs")
         return cmake_options
